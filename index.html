@@ -46,6 +46,28 @@
 			   }
 			   return true;
 		}
+		function convertTemperature(t, u){
+			var t1;
+    		var u1;
+
+    		if(u == "F"){
+        		t1 = t * (9/5) + 32;
+        		u1 = "Fahrenheit";
+    		}else if(u == "K"){
+        		t1 = t + 273.15;
+        		u1 = "Kelvin";
+    		}else if(u == "R"){
+        		t1 = t * (4/5);
+        		u1 = "Réaumur";
+    		}
+
+    		return {
+        		value: t1,
+        		unit: u1
+    		};
+		}
+			
+
 	    $(document).ready(function(){
 			$("button").click(function(){
 			   var t = Number($('#temp').val());//celsius
@@ -58,18 +80,9 @@
 			   var t1;
 			   var u1;
 			   
-			   if(u == "F"){
-					t1 = t * (9/5) + 32;
-					u1 = "Fahrenheit";
-			   }else if(u == "K"){
-					t1 =  t + 273.15;
-					u1 = "Kelvin";
-			   }else if(u == "R"){
-					t1 = t * (4/5);
-                    u1 = "Réaumur";
-			   }
-			   
-			   alert("Temperature is "+t1+" in "+u1);
+
+			   var result = convertTemperature(t, u);
+			   alert("Temperature is "+ result.value +" in "+ result.unit);
 			});
 		});
 	</script>
